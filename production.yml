@@ -1,0 +1,24 @@
+web:
+  extends:
+    file: common.yml
+    service: web
+  env_file:
+    - ./env/web.prod.env
+  volumes_from:
+    - bundle
+  links:
+    - db
+udp:
+  extends:
+    file: common.yml
+    service: udp
+  links:
+    - web
+db:
+  extends:
+    file: common.yml
+    service: db
+bundle:
+  extends:
+    file: common.yml
+    service: bundle

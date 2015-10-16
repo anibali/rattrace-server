@@ -1,0 +1,29 @@
+web:
+  build: WebServer
+  dockerfile: Dockerfile-rpi
+  ports:
+    - "80:3000"
+  env_file:
+    - ./env/udp-auth.env
+    - ./env/postgres.env
+    - ./env/mail.env
+    - ./env/web.prod.env
+  volumes:
+    - "/volumes/bundle:/bundle"
+  links:
+    - db
+udp:
+  build: UdpServer
+  dockerfile: Dockerfile-rpi
+  ports:
+    - "9252:9252/udp"
+  env_file:
+    - ./env/udp-auth.env
+  links:
+    - web
+db:
+  image: anibali/rpi-postgres:9.4
+  volumes:
+    - "/volumes/db:/var/lib/postgresql/data"
+  env_file:
+    - ./env/postgres.env

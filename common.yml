@@ -1,0 +1,24 @@
+web:
+  build: WebServer
+  ports:
+    - "8080:3000"
+  env_file:
+    - ./env/udp-auth.env
+    - ./env/postgres.env
+    - ./env/mail.env
+udp:
+  build: UdpServer
+  ports:
+    - "9252:9252/udp"
+  env_file:
+    - ./env/udp-auth.env
+db:
+  image: postgres:9.4
+  volumes:
+    - "./volumes/db:/var/lib/postgresql/data"
+  env_file:
+    - ./env/postgres.env
+bundle:
+  image: busybox
+  volumes:
+    - /bundle

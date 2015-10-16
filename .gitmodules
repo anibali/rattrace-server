@@ -1,0 +1,6 @@
+[submodule "WebServer"]
+	path = WebServer
+	url = git@github.com:anibali/rattrace-web.git
+[submodule "UdpServer"]
+	path = UdpServer
+	url = git@github.com:anibali/rattrace-udp.git

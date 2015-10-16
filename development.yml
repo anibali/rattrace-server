@@ -1,0 +1,31 @@
+web:
+  extends:
+    file: common.yml
+    service: web
+  environment:
+    - RAILS_ENV=development
+  volumes_from:
+    - bundle
+  volumes:
+    - "./WebServer:/usr/src/app"
+  links:
+    - db
+    - mailcatcher
+udp:
+  extends:
+    file: common.yml
+    service: udp
+  links:
+    - web
+db:
+  extends:
+    file: common.yml
+    service: db
+mailcatcher:
+  build: Mailcatcher
+  ports:
+    - "1080:1080"
+bundle:
+  extends:
+    file: common.yml
+    service: bundle
