@@ -5,7 +5,6 @@ web:
   env_file:
     - ./env/udp-auth.env
     - ./env/postgres.env
-    - ./env/mail.env
 udp:
   build: UdpServer
   ports:

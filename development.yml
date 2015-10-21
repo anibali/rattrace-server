@@ -2,8 +2,8 @@ web:
   extends:
     file: common.yml
     service: web
-  environment:
-    - RAILS_ENV=development
+  env_file:
+    - ./env/web.dev.env
   volumes_from:
     - bundle
   volumes:
