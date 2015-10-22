@@ -6,12 +6,14 @@ web:
   env_file:
     - ./env/udp-auth.env
     - ./env/postgres.env
-    - ./env/mail.env
     - ./env/web.prod.env
+  environment:
+    - USE_MAILCATCHER=true
   volumes:
     - "/volumes/bundle:/bundle"
   links:
     - db
+    - mailcatcher
 udp:
   build: UdpServer
   dockerfile: Dockerfile-rpi
@@ -27,3 +29,8 @@ db:
     - "/volumes/db:/var/lib/postgresql/data"
   env_file:
     - ./env/postgres.env
+mailcatcher:
+  build: Mailcatcher
+  dockerfile: Dockerfile-rpi
+  ports:
+    - "1080:1080"
