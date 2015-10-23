@@ -21,3 +21,7 @@ bundle:
   image: busybox
   volumes:
     - /bundle
+ntp:
+  image: wilcoe/docker-openntpd
+  ports:
+    - "123:123/udp"

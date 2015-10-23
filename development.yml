@@ -29,3 +29,7 @@ bundle:
   extends:
     file: common.yml
     service: bundle
+ntp:
+  extends:
+    file: common.yml
+    service: ntp
